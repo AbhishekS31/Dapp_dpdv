@@ -89,3 +89,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* styles.css or your global CSS file */
+.dotted-background {
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  background-color: #f0f0f0; /* Base background color */
+  background-image: 
+    radial-gradient(circle, #000 10%, transparent 2%), /* Dots */
+    radial-gradient(circle, #030303 10%, transparent 11%); /* Optional: second color for dots */
+  background-size: 20px 20px; /* Size of each dot */
+  background-position: 10 10, 60px 60px; /* Positioning of dots */
+  background-repeat: repeat; /* Repeat the pattern */
+}
+

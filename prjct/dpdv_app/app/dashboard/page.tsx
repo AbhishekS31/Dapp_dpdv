@@ -1,51 +1,44 @@
-import { AppSidebar } from "@/components/app-sidebar";
+"use client"; // Ensure this is at the top
+
+import { useState } from "react";
 import {
   Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { Button } from '@/components/ui/button';
-import Link from 'next/link'; // Import Link from next.js
+import { Button } from "@/components/ui/button";
+import Link from "next/link"; // Import Link from next.js
+import NavigationMenuDemo from "@/components/navigation-menu-demo"; // Adjust the path accordingly
 
 export default function Page() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                {/* Wrap Button with Link to navigate to the Login page */}
-                <Link href="/login" passHref>
-                  <Button className="fixed top-4 right-8 px-4 py-4">
-                    Login
-                  </Button>
-                </Link>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+    <div className="dotted-background flex flex-col h-screen">
+      {/* Header Section */}
+      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <div className="flex items-center gap-2 px-4">
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              {/* Wrap Button with Link to navigate to the Login page */}
+              <Link href="/login" passHref>
+                <Button className="fixed top-4 right-8 px-4 py-4">
+                  Login
+                </Button>
+              </Link>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="fixed top-1 left-8 px-1 py-2">
+        
+          {/* Your main content goes here */}
+      
+          {/* Navigation Menu Demo Section */}
+          <NavigationMenuDemo />
+        
+      </main>
+    </div>
   );
 }
