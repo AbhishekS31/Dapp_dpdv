@@ -6,9 +6,10 @@ import {
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // Assuming Button component exists
 import Link from "next/link"; // Import Link from next.js
 import NavigationMenuDemo from "@/components/navigation-menu-demo"; // Adjust the path accordingly
+import { WalletConnect } from "@/components/walletconnect"; // Import the WalletConnect component
 
 export default function Page() {
   return (
@@ -19,25 +20,19 @@ export default function Page() {
           <Separator orientation="vertical" className="mr-2 h-4" />
           <Breadcrumb>
             <BreadcrumbList>
-              {/* Wrap Button with Link to navigate to the Login page */}
-              <Link href="/login" passHref>
-                <Button className="fixed top-4 right-8 px-4 py-4">
-                  Login
-                </Button>
-              </Link>
+              {/* Replaced Login button with Wallet Connect Button */}
+              <WalletConnect /> {/* Use the WalletConnect component to connect MetaMask */}
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <main className="fixed top-1 left-8 px-1 py-2">
-        
-          {/* Your main content goes here */}
-      
-          {/* Navigation Menu Demo Section */}
+      <main className="fixed top-3 left-3">
+        {/* Your main content goes here */}
+        <div className="text-center">
           <NavigationMenuDemo />
-        
+        </div>
       </main>
     </div>
   );
