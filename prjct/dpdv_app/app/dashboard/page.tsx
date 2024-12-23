@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"; // Assuming Button component ex
 import NavigationMenuDemo from "@/components/navigation-menu-demo"; // Adjust the path accordingly
 import { WalletConnect } from "@/components/walletconnect"; // Import the WalletConnect component
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; // Your HoverCard components
+import Marquee from '@/components/ui/marquee'
 
 export default function Page() {
   const [account, setAccount] = useState<string | null>(null);
@@ -41,13 +42,13 @@ export default function Page() {
             // If an account is connected, display the HoverCard with account details
             <HoverCard>
               <HoverCardTrigger>
-                <Button className="bg-blue-500 text-white px-6 py-3 shadow-lg border-2 border-black">
-                  {account.slice(0, 6)}...
+                <Button className="bg-blue-500 text-white px-14 py-4 shadow-lg border-2 border-black">
+                  Account Connected
                 </Button>
               </HoverCardTrigger>
               <HoverCardContent className="border-2 border-black bg-white rounded-lg shadow-xl p-6">
                 <div className="p-4 text-left">
-                  <h4 className="text-2xl font-bold mb-4">Account Details</h4>
+                  <h4 className="text-2xl font-bold mb-12">Account Details</h4>
                   <p className="text-lg font-semibold">
                     <strong>Account Address:</strong> {account}
                   </p>
