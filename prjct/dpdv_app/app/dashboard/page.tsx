@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button"; // Assuming Button component ex
 import NavigationMenuDemo from "@/components/navigation-menu-demo"; // Adjust the path accordingly
 import { WalletConnect } from "@/components/walletconnect"; // Import the WalletConnect component
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; // Your HoverCard components
-import Marquee from '@/components/ui/marquee'
+import  Marquee  from "@/components/ui/marquee";
 
 export default function Page() {
   const [account, setAccount] = useState<string | null>(null);
-
+  const items = ['----Decentralized File Sharing Appilication----']
   // Handle the account connection
   const handleConnect = (connectedAccount: string) => {
     setAccount(connectedAccount);
@@ -34,6 +34,11 @@ export default function Page() {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
+        <div style={{ position: 'absolute', top: '2px', left: '50%', transform: 'translateX(-50%)', zIndex: 4, width: '40%' }}>
+          <Marquee items={items} />
+        </div>
+
+
       </header>
 
       {/* Main Content Area */}
@@ -42,13 +47,13 @@ export default function Page() {
             // If an account is connected, display the HoverCard with account details
             <HoverCard>
               <HoverCardTrigger>
-                <Button className="bg-blue-500 text-white px-14 py-4 shadow-lg border-2 border-black">
-                  Account Connected
+                <Button className="bg-blue-500 text-white px- py-4 shadow-lg border-2 border-black">
+                  Account connected
                 </Button>
               </HoverCardTrigger>
               <HoverCardContent className="border-2 border-black bg-white rounded-lg shadow-xl p-6">
                 <div className="p-4 text-left">
-                  <h4 className="text-2xl font-bold mb-12">Account Details</h4>
+                  <h4 className="text-2xl font-bold mb-4">Account Details</h4>
                   <p className="text-lg font-semibold">
                     <strong>Account Address:</strong> {account}
                   </p>
