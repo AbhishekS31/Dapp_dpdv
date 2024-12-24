@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body {
+    --pacman: #050401;
+    --background: #fcfcfc;
+    
+    --dot: #4f4d4d;
+    --size: vmin;
+    --halfSize: calc(var(--size) / 2);
+    --negativesize: calc(var(--size) * -1);
+    --positionTop: calc(50vh - var(--halfSize));
+    --timing: 5s;
+    --timingEat: 0.4s;
+  
+    background-color: var(--background);
+    background-image: linear-gradient(var(--background), var(--background)), radial-gradient(var(--dot) 10%, transparent 0);
+    background-size: 100vw var(--size), var(--size) var(--size);
+    background-repeat: no-repeat, repeat;
+    background-position: calc(-100vw - var(--halfSize)) var(--positionTop), 0 0;
+    box-shadow: inset 0 0 0 1vmin var(--background),  inset 0 0 0 2vmin var(--background), inset 0 0 0 2.5vmin var(--wall);
+    
+    width: 100vw;
+    height: 100vh;
+    
+    padding: 0;
+    margin: 0;
+    
+    border-radius: 2vmin;
+    
+    overflow: hidden;
+    
+    animation: move var(--timing) linear infinite;
+  }
+  
+  @keyframes move {
+      0% { background-position: calc(-100vw - var(--halfSize)) var(--positionTop), center center; }
+      100% { background-position: 0 var(--positionTop), center center; }
+  }
+  
+  .pacman-container::after {
+      content: "";
+      display: block;
+      top: calc(var(--positionTop) + 1vmin);
+      left: 0;
+      position: absolute;
+      width: calc(var(--size) - 2vmin);
+      height: calc(var(--size) - 2vmin);
+      border-radius: 50%;
+      background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0);
+      animation: eat var(--timingEat) linear infinite, 
+                 movePacman var(--timing) linear infinite;
+  }
+  
+  @keyframes eat {
+      0%, 
+      50% { background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0); }
+      25% { background: conic-gradient(var(--pacman) 55deg, var(--pacman) 0); }
+  }
+  
+  @keyframes movePacman {
+      from { transform: translate(var(--negativesize), 0); }
+      to { transform: translate(100vw, 0); }
+  }
+  
+  .pacman-container::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 3vmin;
+      height: var(--size);
+      background: var(--background);
+      left: 0;
+      box-shadow: calc(100vw - 3vmin) 0 var(--background);
+      top: var(--positionTop);
+  }
+  
