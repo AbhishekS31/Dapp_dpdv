@@ -2,78 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html, body {
-    --pacman: #050401;
-    --background: #fcfcfc;
-    
-    --dot: #4f4d4d;
-    --size: vmin;
-    --halfSize: calc(var(--size) / 2);
-    --negativesize: calc(var(--size) * -1);
-    --positionTop: calc(50vh - var(--halfSize));
-    --timing: 5s;
-    --timingEat: 0.4s;
-  
-    background-color: var(--background);
-    background-image: linear-gradient(var(--background), var(--background)), radial-gradient(var(--dot) 10%, transparent 0);
-    background-size: 100vw var(--size), var(--size) var(--size);
-    background-repeat: no-repeat, repeat;
-    background-position: calc(-100vw - var(--halfSize)) var(--positionTop), 0 0;
-    box-shadow: inset 0 0 0 1vmin var(--background),  inset 0 0 0 2vmin var(--background), inset 0 0 0 2.5vmin var(--wall);
-    
-    width: 100vw;
-    height: 100vh;
-    
-    padding: 0;
-    margin: 0;
-    
-    border-radius: 2vmin;
-    
-    overflow: hidden;
-    
-    animation: move var(--timing) linear infinite;
-  }
-  
-  @keyframes move {
-      0% { background-position: calc(-100vw - var(--halfSize)) var(--positionTop), center center; }
-      100% { background-position: 0 var(--positionTop), center center; }
-  }
-  
-  .pacman-container::after {
-      content: "";
-      display: block;
-      top: calc(var(--positionTop) + 1vmin);
-      left: 0;
-      position: absolute;
-      width: calc(var(--size) - 2vmin);
-      height: calc(var(--size) - 2vmin);
-      border-radius: 50%;
-      background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0);
-      animation: eat var(--timingEat) linear infinite, 
-                 movePacman var(--timing) linear infinite;
-  }
-  
-  @keyframes eat {
-      0%, 
-      50% { background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0); }
-      25% { background: conic-gradient(var(--pacman) 55deg, var(--pacman) 0); }
-  }
-  
-  @keyframes movePacman {
-      from { transform: translate(var(--negativesize), 0); }
-      to { transform: translate(100vw, 0); }
-  }
-  
-  .pacman-container::before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 3vmin;
-      height: var(--size);
-      background: var(--background);
-      left: 0;
-      box-shadow: calc(100vw - 3vmin) 0 var(--background);
-      top: var(--positionTop);
-  }
-  
+  --pacman: #050401;
+  --background: #fcfcfc;
+  --dot: #4f4d4d;
+  --size: 4vmin;
+  --halfSize: calc(var(--size) / 2);
+  --negativesize: calc(var(--size) * -1);
+  --positionTop: calc(50vh - var(--halfSize));
+  --timing: 5s;
+  --timingEat: 0.4s;
+
+  background-color: var(--background);
+  background-image: linear-gradient(var(--background), var(--background)), radial-gradient(var(--dot) 10%, transparent 0);
+  background-size: 100vw var(--size), var(--size) var(--size);
+  background-repeat: no-repeat, repeat;
+  background-position: calc(-100vw - var(--halfSize)) var(--positionTop), 0 0;
+  box-shadow: inset 0 0 0 1vmin var(--background), inset 0 0 0 2vmin var(--background), inset 0 0 0 2.5vmin var(--wall);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 0;
+  margin: 0;
+
+  border-radius: 2vmin;
+
+  overflow: hidden;
+
+  animation: move var(--timing) linear infinite;
+}
+
+@keyframes move {
+  0% { background-position: calc(-100vw - var(--halfSize)) var(--positionTop), center center; }
+  100% { background-position: 0 var(--positionTop), center center; }
+}
+
+/* Pac-Man Container */
+.pacman-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Pac-Man Styling */
+.pacman {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0);
+  top: calc(var(--positionTop) + 1vmin);
+  left: 10%;
+  animation: eat var(--timingEat) linear infinite, movePacman var(--timing) linear infinite;
+}
+
+/* Pac-Man Eating Animation */
+@keyframes eat {
+  0%, 
+  50% { background: conic-gradient(var(--pacman) 55deg, transparent 0 125deg, var(--pacman) 0); }
+  25% { background: conic-gradient(var(--pacman) 55deg, var(--pacman) 0); }
+}
+
+/* Pac-Man Movement */
+@keyframes movePacman {
+  0% { left: 10%; }
+  50% { left: 50%; }
+  100% { left: 90%; }
+}
+
+/* Ghost Styles */
+.ghost {
+  position: absolute;
+  width: calc(var(--size) * 0.8);
+  height: calc(var(--size) * 0.8);
+  border-radius: 50%;
+  background-size: cover;
+  animation: ghostMovement 10s infinite linear;
+}
+
+/* Ghost movement animation */
+@keyframes ghostMovement {
+  0% { top: 0%; left: 0%; }
+  25% { top: 25%; left: 50%; }
+  50% { top: 50%; left: 100%; }
+  75% { top: 75%; left: 50%; }
+  100% { top: 100%; left: 0%; }
+}
+
+/* Ghost Image Styles */
+.ghost1 {
+  background-image: url('@/app/ghost1.png');
+}
+
+.ghost2 {
+  background-image: url('@/app/ghost2.png');
+}
+
+.ghost3 {
+  background-image: url('@/app/ghost3.png');
+}
+
+.ghost4 {
+  background-image: url('@/app/ghost4.png');
+}
