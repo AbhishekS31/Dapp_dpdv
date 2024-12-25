@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import NavigationMenuDemo from "@/components/navigation-menu-demo";
 import { WalletConnect } from "@/components/walletconnect"; 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; 
+import Marquee from "@/components/ui/marquee";
 import PacmanBackground from "@/components/PacmanBackground"; 
 import ImageCard from "@/components/ui/image-card"; 
 
