@@ -9,9 +9,11 @@ import { WalletConnect } from "@/components/walletconnect"; // Import the Wallet
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; // Your HoverCard components
 import Marquee from "@/components/ui/marquee";
 import PacmanBackground from "@/components/PacmanBackground"; // Import the new PacmanBackground component
+import ImageCard from "@/components/ui/image-card"; // Import the ImageCard component
 
 export default function Page() {
     const [account, setAccount] = useState<string | null>(null);
+    const [files, setFiles] = useState<File[]>([]); // State to hold uploaded files
     const items = ['----Decentralized File Sharing Application----'];
 
     // Handle the account connection
@@ -19,8 +21,13 @@ export default function Page() {
         setAccount(connectedAccount);
     };
 
+    // Handle files dropped or selected
+    const handleFileUpload = (uploadedFiles: File[]) => {
+        setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
+    };
+
     return (
-        <div className="relative flex flex-col h-screen">
+        <div className="relative flex flex-col h-screen overflow-y-auto">
             {/* Background Component */}
             <PacmanBackground />
 
@@ -79,8 +86,7 @@ export default function Page() {
                     onDrop={(e) => {
                         e.preventDefault();
                         const files = e.dataTransfer.files;
-                        console.log("Files dropped:", files);
-                        // Handle the dropped files here
+                        handleFileUpload(Array.from(files)); // Convert FileList to array
                     }}
                     onDragOver={(e) => e.preventDefault()}
                 >
@@ -107,10 +113,31 @@ export default function Page() {
                     className="hidden"
                     onChange={(e) => {
                         const files = e.target.files;
-                        console.log("Files selected:", files);
-                        // Handle the selected files here
+                        if (files) {
+                            handleFileUpload(Array.from(files)); // Convert FileList to array
+                        }
                     }}
                 />
+
+                {/* Files Display Section */}
+                {files.length > 0 && (
+                    <div className="w-full mt-12">
+                        <h3 className="text-xl font-semibold mb-4">Uploaded Files</h3>
+                        <div className="flex flex-col items-start space-y-6 sticky top-24 left-10">
+                            {files.map((file, index) => (
+                                <div key={index} className="w-full max-w-xs">
+                                    {/* Only show image preview using ImageCard */}
+                                    {file.type.startsWith("image/") && (
+                                        <ImageCard
+                                            imageUrl={URL.createObjectURL(file)}
+                                            caption={file.name}
+                                        />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </main>
         </div>
     );
