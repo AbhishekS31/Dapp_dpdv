@@ -1,15 +1,14 @@
-"use client"; // Ensure this is at the top
+"use client";
 
 import { useState } from "react";
 import { Breadcrumb, BreadcrumbList } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button"; // Assuming Button component exists
-import NavigationMenuDemo from "@/components/navigation-menu-demo"; // Adjust the path accordingly
-import { WalletConnect } from "@/components/walletconnect"; // Import the WalletConnect component
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; // Your HoverCard components
-import Marquee from "@/components/ui/marquee";
-import PacmanBackground from "@/components/PacmanBackground"; // Import the new PacmanBackground component
-import ImageCard from "@/components/ui/image-card"; // Import the ImageCard component
+import { Button } from "@/components/ui/button"; 
+import NavigationMenuDemo from "@/components/navigation-menu-demo";
+import { WalletConnect } from "@/components/walletconnect"; 
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"; 
+import PacmanBackground from "@/components/PacmanBackground"; 
+import ImageCard from "@/components/ui/image-card"; 
 
 export default function Page() {
     const [account, setAccount] = useState<string | null>(null);
