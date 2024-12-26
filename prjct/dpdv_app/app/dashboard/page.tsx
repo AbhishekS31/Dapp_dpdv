@@ -54,7 +54,6 @@ export default function Page() {
             {/* Main Content Area */}
             <main className="flex flex-1 flex-col justify-start items-center mt-12 relative space-y-6 z-20">
                 {account ? (
-                    // If an account is connected, display the HoverCard with account details
                     <HoverCard>
                         <HoverCardTrigger>
                             <Button className="bg-blue-500 text-white px- py-4 shadow-lg border-2 border-black">
