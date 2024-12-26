@@ -1,14 +1,14 @@
 "use client"
 // PacmanBackground.tsx
 import React, { useEffect } from 'react';
-import '@/app/PacmanBackground.css'; // Import the CSS for this component
+import '@/app/PacmanBackground.css'; 
 
 const PacmanBackground: React.FC = () => {
     const moveGhosts = () => {
         const ghosts = document.querySelectorAll('.ghost');
         ghosts.forEach(ghost => {
-            const randomX = Math.random() * 100; // Random X position (0-100%)
-            const randomY = Math.random() * 90; // Random Y position (0-100%)
+            const randomX = Math.random() * 100; // Random X position 
+            const randomY = Math.random() * 90; // Random Y position 
             const duration = Math.random() * 5 + 3; // Random duration between 3s and 8s
             ghost.setAttribute('style', `transform: translate(${randomX}vw, ${randomY}vh); transition: transform ${duration}s ease-in-out;`);
         });
@@ -16,7 +16,7 @@ const PacmanBackground: React.FC = () => {
 
     useEffect(() => {
         const interval = setInterval(moveGhosts, 2000); // Move ghosts every 2 seconds
-        return () => clearInterval(interval); // Cleanup on component unmount
+        return () => clearInterval(interval); 
     }, []);
 
     return (
