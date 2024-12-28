@@ -102,7 +102,7 @@ export default function Page() {
                         fileInput?.click();
                     }}
                 >
-                    Upload Files Manually
+                    Upload Files
                 </Button>
 
                 {/* Hidden File Input */}
