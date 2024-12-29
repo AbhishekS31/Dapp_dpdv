@@ -20,8 +20,6 @@ export default function Marquee({ items }: { items: string[] }) {
             );
           })}
         </div>
-  
-        {/* must have both of these in order to work */}
       </div>
     );
   }
