@@ -11,7 +11,7 @@ export function WalletConnect({ onConnect }: { onConnect: (account: string) => v
   const handleMetaMaskConnect = async (): Promise<void> => {
     if (window.ethereum) {
       try {
-        // Request account access from MetaMask
+        // Request account access from MetaMask 
         const accounts: string[] = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
